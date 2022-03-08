@@ -24,6 +24,14 @@ export default class App extends React.Component {
     }
   }
 
+  handleCompleted = () => {
+    this.setState({
+      ...this.state, todos: this.state.todos.filter(todo => {
+        return  (todo.completed === false)
+      })
+    })
+  }
+
   render() {
     const { todos } = this.state;
     return (
@@ -31,7 +39,7 @@ export default class App extends React.Component {
         <h1>Todos:</h1>
         <TodoList todos={todos} />
         <Form />
-        <button>Clear</button>
+        <button onClick={this.handleCompleted}>Clear Completed</button>
       </div>
     )
   }
