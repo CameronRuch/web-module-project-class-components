@@ -1,38 +1,36 @@
 import React from 'react'
-
-let idx = 0;
-const getIdx = () => ++idx;
-
-const todos = [
-  {id: getIdx(), todo: ''}
-]
-
-const initialState = {
-  errorMessage: '',
-  todo: ''
-}
+import Form from './Form';
+import TodoList from './TodoList';
 
 
 
 
 export default class App extends React.Component {
-  state = initialState;
+  constructor() {
+    super();
+    this.state = {
+      todos: [
+        {
+          name: 'Organize Garage',
+          id: 1528817077286,
+          completed: false
+        },
+        {
+          name: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        }
+      ]
+    }
+  }
 
   render() {
+    const { todos } = this.state;
     return (
       <div>
         <h1>Todos:</h1>
-        <ul>
-          <li>Walk the dog</li>
-          <li>Learn React</li>
-          <li>Have Fun</li>
-        </ul>  
-
-        <form>
-          <input/>
-          <button>Submit</button>
-        </form>     
-
+        <TodoList todos={todos} />
+        <Form />
         <button>Clear</button>
       </div>
     )
